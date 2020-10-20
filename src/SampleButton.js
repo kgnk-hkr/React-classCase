@@ -4,15 +4,20 @@ import React from 'react';
 
 class SampleButton extends React.Component {
 
+  // コンストラクター
   constructor(props) {
     super(props);
+    // テキストの初期値設定
     this.state = {
       text: 'OK'
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    //クリックして呼び出すイベント動作を実際にクリックした動作と紐づけている
+    //this.handleClickのthisとbind(this)のthisは指しているものが微妙に違う
+    // this.handleClick = this.handleClick.bind(this);
   }
 
+  // クリックイベントで実行する処理
   handleClick() {
     const samplebutton = document.getElementById('samplebutton');
 
@@ -31,7 +36,7 @@ class SampleButton extends React.Component {
 
   render() {
     return (
-      <div onClick={this.handleClick} class="sampleButton-ok" id="samplebutton">
+      <div onClick={this.handleClick.bind(this)} class="sampleButton-ok" id="samplebutton">
         {this.state.text}
       </div >
     )
