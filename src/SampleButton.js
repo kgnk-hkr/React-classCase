@@ -34,14 +34,13 @@ class SampleButton extends React.Component {
   }
 
   render() {
-    // ボタンを複数個使用する場合はidで判別するため、idを決め打ちではなく上位から受け取ったもの指定にする
-    const id = this.props.id;
+    // ボタンを複数個使用する場合はidで判別するため、決め打ちではなく上位から受け取ったもの指定にする
     return (
-      <div onClick={this.handleClick.bind(this)} className="sampleButton-ok" id={id}>
+      <div onClick={this.handleClick.bind(this)} className="sampleButton-ok" id={this.props.id}>
         {this.state.text}
       </div >
     )
   }
 }
 
-export default SampleButton;//他の関数から呼び出せるように
+export default SampleButton;
