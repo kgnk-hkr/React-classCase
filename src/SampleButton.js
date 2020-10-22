@@ -1,7 +1,6 @@
 import './SampleButton.css';
 import React from 'react';
 
-
 class SampleButton extends React.Component {
 
   // コンストラクター
@@ -9,34 +8,36 @@ class SampleButton extends React.Component {
     super(props);
     // テキストの初期値設定
     this.state = {
-      text: 'OK'
+      text: 'OK',
     };
-
-    //クリックして呼び出すイベント動作を実際にクリックした動作と紐づけている
-    //this.handleClickのthisとbind(this)のthisは指しているものが微妙に違う
-    // this.handleClick = this.handleClick.bind(this);
   }
 
   // クリックイベントで実行する処理
   handleClick() {
-    const samplebutton = document.getElementById('samplebutton');
+    const samplebutton = document.getElementById(this.props.id);
 
     if (!samplebutton.classList.contains('sampleButton-ng')) {
+      // テキストの変更
       this.setState(state => ({
         text: 'NG'
       }));
+      // クラスの追加
       samplebutton.classList.add('sampleButton-ng');
     } else {
+      // テキストの変更
       this.setState(state => ({
         text: 'OK'
       }));
+      // クラスの追加
       samplebutton.classList.remove('sampleButton-ng');
     }
   }
 
   render() {
+    // ボタンを複数個使用する場合はidで判別するため、idを決め打ちではなく上位から受け取ったもの指定にする
+    const id = this.props.id;
     return (
-      <div onClick={this.handleClick.bind(this)} class="sampleButton-ok" id="samplebutton">
+      <div onClick={this.handleClick.bind(this)} className="sampleButton-ok" id={id}>
         {this.state.text}
       </div >
     )
